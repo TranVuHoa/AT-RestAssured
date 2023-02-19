@@ -13,7 +13,7 @@ import io.restassured.http.ContentType;
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
 
-public class APIExamples {
+public class APIExamples extends DataForTest{
 
 	@Test(enabled = true)
 	public void testGet() {
@@ -29,12 +29,12 @@ public class APIExamples {
 	
 	}
 	
-	@Test(enabled = true)
-	public void testPost() {
+	@Test(enabled = true, dataProvider = "DataForPost")
+	public void testPost(String name, String job) {
 		
 		JSONObject request = new JSONObject();
-		request.put("name", "Raghav");
-		request.put("job", "Teacher");
+		request.put("name", name);
+		request.put("job", job);
 		
 		System.out.println(request.toJSONString());
 		
